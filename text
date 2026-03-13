@@ -1,0 +1,53 @@
+// npm init - y 
+//npm i express mongoose   dotenv
+//structue MVC are: 
+/*
+first:
+view instead of route 
+second:
+In Node.js, the MVC (Model-View-Controller) architecture is a design pattern that separates an application into three main components to organize code better, make it scalable, and maintainable. Here's the breakdown:
+1. Model
+
+Purpose: Handles data and business logic.
+
+Represents the structure of your data, usually connecting to a database like MongoDB, MySQL, or PostgreSQL.
+
+Responsible for CRUD operations (Create, Read, Update, Delete).
+
+2. View
+
+Purpose: Handles presentation layer, i.e., what the user sees.
+
+In Node.js, this can be HTML templates rendered by engines like:
+
+EJS
+
+Pug
+
+Handlebars
+
+Views receive data from the controller and display it to the user.
+
+3. Controller
+
+Purpose: Handles application logic and user requests.
+
+Acts as a bridge between Model and View:
+
+Receives requests from the client.
+
+Retrieves/updates data using the Model.
+
+Sends data to the View for rendering or returns JSON for APIs.
+
+4. Routes
+
+In Node.js MVC, routes are often used to connect HTTP requests to the controllers.
+
+Keeps the controllers clean and organized.
+
+
+
+
+*/
+//
