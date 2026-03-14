@@ -55,5 +55,138 @@ Keeps the controllers clean and organized.
 // model : بيمثل جدول الداتا بيز
 // module: بيمثل ملف الجافا سكريبت بتاعي
 
+// Authenticatio System consests of (Register, login, logout)
+// token
+/*
+هو المسؤول عن تعمل عمليات ال authentication & authorization
 
 
+*/
+
+// joi  &  jwt
+/*
+1️⃣ Joi
+
+وظيفته: التحقق من صحة البيانات (Validation).
+
+يعني يتأكد أن البيانات التي يرسلها المستخدم صحيحة قبل معالجتها.
+
+أمثلة على ما يفعله Joi
+
+التأكد أن email بصيغة صحيحة
+
+التأكد أن password ليس فارغًا
+
+التأكد من طول النص أو نوع البيانات
+
+2️⃣ JWT (JSON Web Token)
+
+وظيفته: المصادقة Authentication وإدارة الجلسات بدون Session.
+
+بعد أن يسجل المستخدم الدخول بنجاح، يقوم السيرفر بإنشاء Token وإرساله للمستخدم.
+
+المستخدم يرسل هذا token مع كل request لاحق.
+*/
+/*
+في Node.js، مكتبة Joi تستخدم للتحقق من صحة البيانات (Data Validation) قبل إدخالها في قاعدة البيانات أو قبل استخدامها في أي جزء من التطبيق. بمعنى آخر، Joi تتحقق من أن البيانات القادمة من المستخدم صحيحة وتطابق الشروط المطلوبة.
+*/
+// the difference between authentication & authorization
+/*
+1️⃣ Authentication (المصادقة)
+
+المعنى: التحقق من هوية المستخدم.
+💡 مثال:
+عندما تدخل إلى موقع وتكتب الإيميل والباسورد لتسجيل الدخول، هنا النظام يقوم بعملية Authentication.
+2️⃣ Authorization (التفويض / الصلاحيات)
+
+المعنى: تحديد ما الذي يحق للمستخدم فعله بعد تسجيل الدخول.
+💡 مثال:
+في موقع إدارة:
+
+Admin → يستطيع حذف المستخدمين
+
+User → يستطيع فقط رؤية البيانات
+*/
+
+
+/*
+const { error, value } = registerSchema.validate(req.body, {
+  abortEarly: false,
+  stripUnknown: true
+});
+
+
+1️⃣ registerSchema.validate(req.body)
+
+هذا يقوم بـ التحقق من البيانات القادمة من المستخدم حسب القواعد التي حددتها في registerSchema.
+
+شرح الخيارات
+2️⃣ abortEarly: false
+
+بشكل افتراضي، Joi يتوقف عند أول خطأ.
+
+لكن عندما نكتب:
+
+abortEarly: false
+
+📌 سيقوم بإرجاع كل الأخطاء مرة واحدة.
+
+مثال
+
+لو المستخدم أرسل:
+
+{
+  "name": "",
+  "email": "wrong",
+  "password": "12"
+}
+
+بدل أن يعطي خطأ واحد فقط، سيعطي:
+
+name required
+
+email invalid
+
+password too short
+
+3️⃣ stripUnknown: true
+
+هذا الخيار يحذف أي حقول غير موجودة في الـ schema.
+
+مثال
+
+لو المستخدم أرسل:
+
+{
+  "name": "Mohamed",
+  "email": "m@gmail.com",
+  "password": "123456",
+  "role": "admin"
+}
+
+لكن role غير موجود في الـ schema.
+
+📌 مع stripUnknown: true سيتم حذف role تلقائيًا.
+
+النتيجة في value تصبح:
+
+{
+  name: "Mohamed",
+  email: "m@gmail.com",
+  password: "123456"
+}
+القيم الناتجة
+const { error, value }
+error
+
+يحتوي على أخطاء validation
+
+إذا كان null → البيانات صحيحة
+
+value
+
+يحتوي على البيانات بعد تنظيفها
+
+
+
+*/
